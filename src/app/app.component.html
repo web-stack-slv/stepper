@@ -1,0 +1,19 @@
+<div class="container">
+  <form [formGroup]="form">
+    <mdb-stepper #stepper formArrayName="steps">
+      <ng-container *ngFor="let step of steps.controls; let i = index;">
+        <mdb-step [formGroupName]="i" name="Step {{i+1}}">
+          <div class="row">
+           <h3>STEP {{i+1}}</h3>
+          </div>
+          <div class="row">
+            <button *ngIf="i > 0" mdbBtn size="sm" color="primary" (click)="stepper.previous()">BACK</button>
+            <button mdbBtn size="sm" color="success" (click)="addStep()">ADD STEP</button>
+            <button mdbBtn size="sm" color="danger" (click)="removeStep(i)">DEL STEP</button>
+            <button *ngIf="i < steps.length - 1" mdbBtn size="sm" color="primary" (click)="stepper.next()">FORWARD</button>
+          </div>          
+        </mdb-step>
+      </ng-container>
+    </mdb-stepper>
+  </form>
+</div>
